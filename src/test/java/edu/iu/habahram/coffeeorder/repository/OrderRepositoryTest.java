@@ -215,12 +215,7 @@ class OrderRepositoryTest {
             // trim newline when comparing with lineToRemove
             String trimmedLine = currentLine.trim();
             if(trimmedLine.equals(lineToRemove)) continue;
-            if (first) {
-                writer.write(currentLine);
-                first = false;
-            }
-            else
-                writer.write(System.lineSeparator() + currentLine);if (first) {
+            else if (first) {
                 writer.write(currentLine);
                 first = false;
             }

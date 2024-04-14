@@ -17,7 +17,7 @@ import java.util.List;
 public class OrderRepository {
 
     private static final String NEW_LINE = System.lineSeparator();
-    private static final String DATABASE_NAME = "db.txt";
+    private static final String DATABASE_NAME = "data/db.txt";
 
     private static void appendToFile(Path path, String content) throws IOException {
         Files.write(path,
@@ -72,9 +72,11 @@ public class OrderRepository {
         for (String line : data) {
             String[] words = line.split(",");
             // Make sure id is unique
-            if (Integer.valueOf(words[0]) == id) { id++; }
+            System.out.println(Arrays.toString(words));
+            if (Integer.parseInt(words[0]) == id) { id++; }
             else { break; }
         }
+        System.out.println(id);
         // Format to 2 decimal places
         float cost = (float) (Math.round(beverage.cost() * 100.0) / 100.0);
         String newReceipt = id + ", " + cost + ", " + beverage.getDescription();
