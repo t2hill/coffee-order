@@ -20,7 +20,7 @@ class OrderRepositoryTest {
 
     @BeforeAll()
     static void getId() throws IOException {
-        File inputFile = new File("db.txt");
+        File inputFile = new File("data/db.txt");
         BufferedReader reader = new BufferedReader(new FileReader(inputFile));
         id = 0;
         while(reader.readLine() != null) {
@@ -202,8 +202,8 @@ class OrderRepositoryTest {
 
     @AfterEach()
     void tearDown() throws IOException {
-        File inputFile = new File("db.txt");
-        File tempFile = new File("db_temp.txt");
+        File inputFile = new File("data/db.txt");
+        File tempFile = new File("data/db_temp.txt");
 
         BufferedReader reader = new BufferedReader(new FileReader(inputFile));
         BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
@@ -216,6 +216,11 @@ class OrderRepositoryTest {
             String trimmedLine = currentLine.trim();
             if(trimmedLine.equals(lineToRemove)) continue;
             if (first) {
+                writer.write(currentLine);
+                first = false;
+            }
+            else
+                writer.write(System.lineSeparator() + currentLine);if (first) {
                 writer.write(currentLine);
                 first = false;
             }
