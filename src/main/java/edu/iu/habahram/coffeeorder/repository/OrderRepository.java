@@ -28,7 +28,7 @@ public class OrderRepository {
 
     public Receipt add(OrderData order) throws Exception {
         Beverage beverage = null;
-        switch (order.beverage().toLowerCase().trim()) {
+        switch (order.getBeverage().toLowerCase().trim()) {
             case "dark roast":
                 beverage = new DarkRoast();
                 break;
@@ -43,9 +43,9 @@ public class OrderRepository {
                 break;
         }
         if (beverage == null) {
-            throw new Exception("Beverage type '%s' is not valid!".formatted(order.beverage()));
+            throw new Exception("Beverage type '%s' is not valid!".formatted(order.getBeverage()));
         }
-        for(String condiment : order.condiments()) {
+        for(String condiment : order.getCondiments()) {
             switch (condiment.toLowerCase().trim()) {
                 case "milk":
                    beverage = new Milk(beverage);

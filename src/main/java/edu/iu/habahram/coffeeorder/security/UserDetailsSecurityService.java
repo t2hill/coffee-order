@@ -27,7 +27,7 @@ public class UserDetailsSecurityService implements UserDetailsService {
             }
             return User
                     .withUsername(username)
-                    .password(customer.password())
+                    .password(customer.getPassword())
                     .build();
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -1,0 +1,10 @@
+services:
+  coffee-database:
+    image: postgres:alpine
+    container_name: coffee-database
+    ports:
+      - "6001:5432"
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: coffee

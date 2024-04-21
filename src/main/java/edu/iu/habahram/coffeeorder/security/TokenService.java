@@ -33,4 +33,18 @@ public class TokenService {
         return this.encoder.encode(JwtEncoderParameters.from(claims))
                 .getTokenValue();
     }
+
+    public String generateToken(String username, String scope) {
+        Instant now = Instant.now();
+        JwtClaimsSet claims = JwtClaimsSet.builder()
+                .issuer("self")
+                .issuedAt(now)
+                .expiresAt(now.plus(1, ChronoUnit.HOURS))
+                .subject(username)
+                .claim("scope", scope)
+                .build();
+
+        String tokenValue = this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+        return tokenValue;
+    }
 }
